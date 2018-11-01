@@ -1,4 +1,4 @@
 # kube-client
 Use client-go to deploy kubernetes cluster
 
-go get client-go and run that *.go file
+go get client-go and run that *.go  example file
