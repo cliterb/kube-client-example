@@ -96,7 +96,6 @@ func (i *ing) watch_ingress ()  {
 	if err != nil {
 		panic(err)
 	}
-
 	select {
 		case e := <-watch_ingress.ResultChan():
 			fmt.Println(e.Type)
@@ -108,7 +107,12 @@ func (i *ing) update_ingress()  {
 	if err != nil {
 		panic(err)
 	}
-	ingress_yaml.ObjectMeta.Name ="nginx1"
+	ingress_yaml.Spec.Rules = []exv1beta.IngressRule{
+		exv1beta.IngressRule{
+			Host: "nginx-example.local.com",
+		},
+	}
+
 	ingress, err := i.ingress.Update(ingress_yaml)
 	if err != nil {
 		panic(err)
